@@ -8,7 +8,7 @@ function Logowanie() {
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // 1. Logowanie do Supabase Auth
+
         const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
             email,
             password,
@@ -16,17 +16,17 @@ function Logowanie() {
 
         if (authError) return alert(authError.message);
 
-        // 2. Pobranie roli z tabeli profiles
+
         const { data: role, error: profileError } = await supabase
-            .from('role')
-            .select('nazwa')
+            .from('uzytkownicy')
+            .select('rola_id')
             .eq('id', authData.user.id)
             .single();
 
         if (profileError) return console.error(profileError);
 
-        // 3. Przekierowanie na podstawie roli
-        if (role.nazwa === 'Pracownik') {
+
+        if (role.rola_id === 1) {
             navigate('/panel-pracownika');
         } else {
             navigate('/panel-uzytkownika');
