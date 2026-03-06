@@ -1,0 +1,22 @@
+name: workflow.yml
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the project
+        run: npm run build
+
+      - name: Restart Server (Optional)
+        run: pm2 restart KlubBilardowy || pm2 start npm --name "KlubBilardowy" -- run preview
