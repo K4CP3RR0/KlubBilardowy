@@ -31,6 +31,9 @@ function App() {
           <Link to="/rezerwacje">
               <button>Rezerwacje</button>
           </Link>
+          <Link to="/rejestracja">
+              <button>Rejestracja</button>
+          </Link>
         </div>
 
   )
