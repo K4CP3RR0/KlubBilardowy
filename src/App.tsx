@@ -11,6 +11,15 @@ function App() {
           <Link to="/kontakt">
               <button>Kontakt</button>
           </Link>
+          <Link to="/cennik">
+              <button>Cennik</button>
+          </Link>
+          <Link to="/logowanie">
+              <button>Logowanie</button>
+          </Link>
+          <Link to="/rezerwacje">
+              <button>Rezerwacje</button>
+          </Link>
         </div>
   )
 }
