@@ -6,6 +6,7 @@ import Kontakt from "./Kontakt.tsx";
 import Cennik from "./Cennik.tsx";
 import Logowanie from "./Logowanie.tsx";
 import Rezerwacje from "./Rezerwacje.tsx";
+import PanelPracownika from "./PanelPracownika.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/cennik" element={<Cennik/>} />
               <Route path="/logowanie" element={<Logowanie/>} />
               <Route path="/rezerwacje" element={<Rezerwacje/>} />
+              <Route path="/panelPracownika" element={<PanelPracownika/>} />
           </Routes>
       </BrowserRouter>
   </StrictMode>,
