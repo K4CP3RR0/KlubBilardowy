@@ -20,8 +20,8 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/cennik" element={<Cennik/>} />
               <Route path="/logowanie" element={<Logowanie/>} />
               <Route path="/rezerwacje" element={<Rezerwacje/>} />
-              <Route path="/panel-pracownika" element={<ProtectedRoute><PanelPracownika/></ProtectedRoute>} />
-              <Route path="/panel-uzytkownika" element={<ProtectedRoute><PanelUzytkownika/></ProtectedRoute>}/>
+              <Route path="/panel-pracownika" element={<ProtectedRoute requiredRole={1}><PanelPracownika/></ProtectedRoute>} />
+              <Route path="/panel-uzytkownika" element={<ProtectedRoute requiredRole={2}><PanelUzytkownika/></ProtectedRoute>}/>
               <Route path="/rejestracja" element={<Rejestracja/>} />
           </Routes>
       </BrowserRouter>
