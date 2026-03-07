@@ -23,16 +23,16 @@ function App() {
               <button className="btn btn-primary">Kontakt</button>
           </Link>
           <Link to="/cennik">
-              <button>Cennik</button>
+              <button className="btn btn-success">Cennik</button>
           </Link>
           <Link to="/logowanie">
-              <button>Logowanie</button>
+              <button className="btn btn-danger">Logowanie</button>
           </Link>
           <Link to="/rezerwacje">
-              <button>Rezerwacje</button>
+              <button className="btn btn-warning">Rezerwacje</button>
           </Link>
           <Link to="/rejestracja">
-              <button>Rejestracja</button>
+              <button className="btn btn-secondary">Rejestracja</button>
           </Link>
         </div>
 
