@@ -1,7 +1,7 @@
 //import { supabase } from '../utils/supabase'
 //import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-
+import Logout from './Logout';
 
 function App() {
 /*    const [, setTodos] = useState([])
@@ -34,6 +34,8 @@ function App() {
           <Link to="/rejestracja">
               <button className="btn btn-secondary">Rejestracja</button>
           </Link>
+          <button className="btn btn-dark">Wyloguj</button>
+          <Logout />
         </div>
 
   )
