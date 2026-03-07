@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 function PanelPracownika() {
 
     return (
+
         <div className="container text-center">
             <div className="row px-2 column-gap-3">
 

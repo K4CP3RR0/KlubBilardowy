@@ -9,6 +9,7 @@ import Rezerwacje from "./Rezerwacje.tsx";
 import PanelPracownika from "./PanelPracownika.tsx";
 import PanelUzytkownika from "./PanelUzytkownika.tsx";
 import Rejestracja from "./Rejestracja.tsx";
+import ProtectedRoute from "./ProtectedRoute.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,8 +20,8 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/cennik" element={<Cennik/>} />
               <Route path="/logowanie" element={<Logowanie/>} />
               <Route path="/rezerwacje" element={<Rezerwacje/>} />
-              <Route path="/panel-pracownika" element={<PanelPracownika/>} />
-              <Route path="/panel-uzytkownika" element={<PanelUzytkownika/>}/>
+              <Route path="/panel-pracownika" element={<ProtectedRoute><PanelPracownika/></ProtectedRoute>} />
+              <Route path="/panel-uzytkownika" element={<ProtectedRoute><PanelUzytkownika/></ProtectedRoute>}/>
               <Route path="/rejestracja" element={<Rejestracja/>} />
           </Routes>
       </BrowserRouter>
