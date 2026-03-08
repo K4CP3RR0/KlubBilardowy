@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import  supabase  from './utils/supabase';
+import {useTitle} from "./hooks/useTitle.tsx";
 
 function Rejestracja() {
+    useTitle("Rejestracja");
     const [formData, setFormData] = useState({
         email: '',
         password: '',
