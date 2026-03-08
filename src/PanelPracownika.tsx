@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
-
+import {useTitle} from "./hooks/useTitle.tsx";
 function PanelPracownika() {
-
+    useTitle("Panel Pracownika");
     return (
 
         <div className="container text-center">

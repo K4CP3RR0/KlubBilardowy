@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import  supabase  from './utils/supabase';
 import { useNavigate } from 'react-router-dom';
+import {useTitle} from "./hooks/useTitle.tsx";
+
 function Logowanie() {
+    useTitle("Logowanie");
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();

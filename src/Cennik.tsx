@@ -1,5 +1,7 @@
-function Cennik() {
+import {useTitle} from "./hooks/useTitle.tsx";
 
+function Cennik() {
+    useTitle("Cennik");
     return (
         <div className="container">
             <h1 className="text-white text-center">Cennik</h1>
