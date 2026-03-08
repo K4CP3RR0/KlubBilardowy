@@ -33,7 +33,7 @@ const Navbar = () => {
         void init();
         const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
             if (event === 'SIGNED_IN') fetchUserName();
-            if (event === 'SIGNED_OUT') setUserName(null);
+            if (event === 'SIGNED_OUT') setUserName(null); setUserRole(null);
         });
         return () => subscription.unsubscribe();
     }, []);
