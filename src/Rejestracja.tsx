@@ -36,14 +36,60 @@ function Rejestracja() {
     };
 
     return (
-        <form onSubmit={handleSignUp} className="container d-flex flex-column gap-2 w-50">
-            <input type="text" placeholder="Imię" onChange={e => setFormData({...formData, imie: e.target.value})} required />
-            <input type="text" placeholder="Nazwisko" onChange={e => setFormData({...formData, nazwisko: e.target.value})} required />
-            <input type="text" placeholder="Telefon" onChange={e => setFormData({...formData, telefon: e.target.value})} />
-            <input type="email" placeholder="Email" onChange={e => setFormData({...formData, email: e.target.value})} required />
-            <input type="password" placeholder="Hasło" onChange={e => setFormData({...formData, password: e.target.value})} required />
-            <button type="submit" className="btn btn-success">Zarejestruj się</button>
+        // <form onSubmit={handleSignUp} className="container d-flex flex-column gap-2 w-50">
+        //     <input type="text" placeholder="Imię" onChange={e => setFormData({...formData, imie: e.target.value})} required />
+        //     <input type="text" placeholder="Nazwisko" onChange={e => setFormData({...formData, nazwisko: e.target.value})} required />
+        //     <input type="text" placeholder="Telefon" onChange={e => setFormData({...formData, telefon: e.target.value})} />
+        //     <input type="email" placeholder="Email" onChange={e => setFormData({...formData, email: e.target.value})} required />
+        //     <input type="password" placeholder="Hasło" onChange={e => setFormData({...formData, password: e.target.value})} required />
+        //     <button type="submit" className="btn btn-success">Zarejestruj się</button>
+        // </form>
+        <form onSubmit={handleSignUp} className="rounded-lg p-10 m-2 content-center bg-[#03346E]">
+            <div className="mt-6 m-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Imię</label>
+                <div className="mt-1">
+                    <input id="imie" onChange={e => setFormData({...formData, imie: e.target.value})} required
+                           className="block w-full rounded-md border border-gray-300 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-sky-500 focus:outline focus:outline-sky-500 disabled:shadow-none sm:text-sm disabled:border-gray-700 disabled:bg-gray-800/20"
+                           name="imie" placeholder="Imię"/>
+                </div>
+            </div>
+            <div className="mt-6 m-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Nazwisko</label>
+                <div className="mt-1">
+                    <input id="nazwisko" onChange={e => setFormData({...formData, nazwisko: e.target.value})} required
+                           className="block w-full rounded-md border border-gray-300 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-sky-500 focus:outline focus:outline-sky-500 disabled:shadow-none sm:text-sm disabled:border-gray-700 disabled:bg-gray-800/20"
+                           name="nazwisko" placeholder="Nazwisko"/>
+                </div>
+            </div>
+            <div className="mt-6 m-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Telefon</label>
+                <div className="mt-1">
+                    <input id="phone" onChange={e => setFormData({...formData, telefon: e.target.value})} required
+                           className="block w-full rounded-md border border-gray-300 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-sky-500 focus:outline focus:outline-sky-500 disabled:shadow-none sm:text-sm disabled:border-gray-700 disabled:bg-gray-800/20"
+                           name="phone" placeholder="Telefon"/>
+                </div>
+            </div>
+            <div className="mt-6 m-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                <div className="mt-1">
+                    <input id="email1" onChange={e => setFormData({...formData, email: e.target.value})} required placeholder="Email"
+                           className="block w-full rounded-md border border-gray-300 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-sky-500 focus:outline focus:outline-sky-500 disabled:shadow-none sm:text-sm disabled:border-gray-700 disabled:bg-gray-800/20"
+                           name="email"/>
+                </div>
+            </div>
+            <div className="mt-6 m-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Hasło</label>
+                <div className="mt-1">
+                    <input id="password" onChange={e => setFormData({...formData, password: e.target.value})} required placeholder="Hasło"
+                           className="block w-full rounded-md border border-gray-300 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-sky-500 focus:outline focus:outline-sky-500 disabled:shadow-none sm:text-sm disabled:border-gray-700 disabled:bg-gray-800/20"
+                           type="password" name="password"/>
+                </div>
+            </div>
+            <div className="mt-6 text-center p-2">
+                <button className="rounded-md bg-[#FF6500] px-5 m-2 py-2.5 text-sm leading-5 font-semibold text-white hover:bg-[#FF7700]">Zarejestruj się</button>
+            </div>
         </form>
+
     );
 }
 

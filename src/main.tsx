@@ -10,13 +10,13 @@ import PanelPracownika from "./PanelPracownika.tsx";
 import PanelUzytkownika from "./PanelUzytkownika.tsx";
 import Rejestracja from "./Rejestracja.tsx";
 import ProtectedRoute from "./ProtectedRoute.tsx";
-import Navbar from "./Navbar.tsx";
+import Navbar from "./components/Navbar.tsx";
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
       <BrowserRouter>
-          <Navbar />
-
+            <Navbar/>
           <Routes>
               {/*<Route path="/" element={<App />} />*/}
               <Route path="/kontakt" element={<Kontakt/>} />
