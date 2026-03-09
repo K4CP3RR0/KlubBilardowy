@@ -7,7 +7,7 @@ const Logout= () => {
         if (!error) {navigate('/');}
     }
     return (
-        <button className="btn btn-danger" onClick={handleLogout}>Wyloguj się</button>
+        <button className="font-bold rounded-lg px-3 ml-2 py-2 text-white bg-black hover:bg-black hover:text-blue-600" onClick={handleLogout}>Wyloguj się</button>
     );
 }
 export default Logout;
