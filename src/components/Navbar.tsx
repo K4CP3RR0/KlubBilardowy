@@ -56,12 +56,18 @@ const Navbar = () => {
                             )}
                         </svg>
                     </button>
+                    <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-2">
+                        <img className="h-8 w-8" src="/favicon.svg" alt="8bila"/>
+                        <a href="/" className="font-bold text-white text-lg whitespace-nowrap transition hover:text-gray-300">Klub Bilardowy</a>
+                    </div>
                 </div>
 
 
                 <div className="hidden md:flex space-x-4 items-center">
-                    <img src="/favicon.svg" alt="8bila"/>
-                    <a href="/" className="font-medium rounded-lg px-3 py-2 transition">Klub bilardowy</a>
+                    <div className="flex items-center justify-center space-x-3 py-2">
+                        <img src="/favicon.svg" alt="8bila" className="h-8 w-8 object-contain"/>
+                        <a href="/" className="text-white font-bold text-lg hover:text-gray-300 transition-colors">Klub bilardowy</a>
+                    </div>
                     <a href="/cennik" className="font-bold rounded-lg px-3 py-2 hover:bg-gray-100 hover:text-gray-900 transition">Cennik</a>
                     <a href="/rezerwacje" className="font-bold rounded-lg px-3 py-2 hover:bg-gray-100 hover:text-gray-900 transition">Rezerwacje</a>
                     <a href="/kontakt" className="font-bold rounded-lg px-3 py-2 hover:bg-gray-100 hover:text-gray-900 transition">Kontakt</a>
@@ -92,11 +98,15 @@ const Navbar = () => {
 
             <div className={`${isOpen ? 'block' : 'hidden'} md:hidden mt-2 pb-4 border-t border-blue-800`}>
                 <div className="flex flex-col space-y-2 pt-4">
-                    <a href="/" className="px-3 py-2 rounded-md hover:bg-blue-700">Strona główna</a>
                     <a href="/cennik" className="px-3 py-2 rounded-md hover:bg-blue-700">Cennik</a>
                     <a href="/rezerwacje" className="px-3 py-2 rounded-md hover:bg-blue-700">Rezerwacje</a>
                     <a href="/kontakt" className="px-3 py-2 rounded-md hover:bg-blue-700">Kontakt</a>
-
+                    {userRole === 1 && (
+                        <a href="/panel-pracownika" className="font-bold rounded-md px-3 py-2 text-red-400 hover:bg-blue-700 hover:text-gray-100">Panel pracownika</a>
+                    )}
+                    {userRole === 2 && (
+                        <a href="/panel-uzytkownika" className="font-bold rounded-md px-3 py-2 text-red-400 hover:bg-blue-700 hover:text-gray-100">Panel użytkownika</a>
+                    )}
                     <hr className="border-blue-800" />
 
                     {userName ? (
