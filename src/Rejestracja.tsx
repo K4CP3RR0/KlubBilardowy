@@ -36,14 +36,6 @@ function Rejestracja() {
     };
 
     return (
-        // <form onSubmit={handleSignUp} className="container d-flex flex-column gap-2 w-50">
-        //     <input type="text" placeholder="Imię" onChange={e => setFormData({...formData, imie: e.target.value})} required />
-        //     <input type="text" placeholder="Nazwisko" onChange={e => setFormData({...formData, nazwisko: e.target.value})} required />
-        //     <input type="text" placeholder="Telefon" onChange={e => setFormData({...formData, telefon: e.target.value})} />
-        //     <input type="email" placeholder="Email" onChange={e => setFormData({...formData, email: e.target.value})} required />
-        //     <input type="password" placeholder="Hasło" onChange={e => setFormData({...formData, password: e.target.value})} required />
-        //     <button type="submit" className="btn btn-success">Zarejestruj się</button>
-        // </form>
         <form onSubmit={handleSignUp} className="rounded-lg p-10 m-2 content-center bg-[#03346E]">
             <div className="mt-6 m-2">
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Imię</label>
