@@ -1,3 +1,5 @@
+name: workflow.yml
+
 on:
   push:
     branches:
@@ -6,18 +8,9 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
-    # Use the environment name you created in GitHub Settings
-    environment: server 
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      # This step creates the .env file on your server right before the build
-      - name: Create .env file from Secrets
-        run: |
-          echo "VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}" > .env
-          echo "VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }}" >> .env
 
       - name: Install dependencies
         run: npm install
