@@ -8,7 +8,7 @@ const TableCard = ({ id, type, status, image }) => (
         <h3 className="text-white font-bold">{type} #{id}</h3>
         <span className="px-2 py-1 bg-green-900 text-green-400 text-xs rounded-full">{status}</span>
       </div>
-      <p className="text-gray-400 text-sm mt-2">Click to view today's schedule</p>
+      <p className="text-gray-400 text-sm mt-2">Kliknij, aby sprawdzić rezerwacje</p>
     </div>
   </div>
 );
