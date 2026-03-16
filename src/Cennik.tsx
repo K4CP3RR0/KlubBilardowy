@@ -45,10 +45,38 @@ const Cennik = () => {
         return <div className="text-center text-white mt-10">Ładowanie cennika</div>
     }
 
+    const getRowData = (item: CennikItem) => {
+        const isSunday = item.dzien_tygodnia === 7;
+        const isEvening = item.czas_od.startsWith("18");
+        return {
+            timeLabel: isSunday ? "Cały dzień" : (isEvening ? "Po 18:00" : "Przed 18:00"),
+            taryfa: isEvening ? "WIECZORNA" : "DZIENNA",
+            isEvening
+        };
+    };
+
+    const renderPriceTable = (title: string, items: CennikItem[]) => (
+        <div className="mb-10 text-white">
+            <h2>{title}</h2>
+            <table>
+                {items.map((item) => {
+                    const { timeLabel, taryfa } = getRowData(item);
+                    return (
+                        <tr key={item.id}>
+                            <td>{dniTygodnia[item.dzien_tygodnia]}</td>
+                            <td>{timeLabel}</td>
+                            <td>{taryfa}</td>
+                            <td>{item.cena_za_godzine} PLN</td>
+                        </tr>
+                    );
+                })}
+            </table>
+        </div>
+    );
+
     return (
         <div className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold text-white mb-6 text-center">Cennik usług</h1>
-
             <div className="overflow-x-auto rounded-lg shadow-lg border border-gray-700">
                 <table className="min-w-full bg-gray-800 text-white">
                     <thead className="bg-gray-900">
@@ -90,6 +118,8 @@ const Cennik = () => {
                     <p className="text-xl font-bold text-white">40 PLN (cały dzień)</p>
                 </div>
             </div>
+            {renderPriceTable("Bilard", cennik.filter(i => i.typ_zasobu_id === 1))}
+            {renderPriceTable("Dart", cennik.filter(i => i.typ_zasobu_id === 2))}
         </div>
     );
 };
