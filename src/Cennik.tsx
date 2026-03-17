@@ -25,6 +25,12 @@ const Cennik = () => {
     useTitle("Cennik");
     const [cennik, setCennik] = useState<CennikItem[]>([]);
     const [loading, setLoading] = useState(true);
+    const [currentTime, setCurrentTime] = useState(new Date());
+
+    useEffect(() => {
+        const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+        return () => clearInterval(timer);
+    }, []);
 
     useEffect(() => {
         const fetchCennik = async () => {
@@ -76,6 +82,15 @@ const Cennik = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-6 py-16 max-w-4xl">
+                <header className="mb-16 text-center text-white">
+                    <h1 className="text-3xl font-light uppercase tracking-widest">Cennik Usług</h1>
+                    <div className="mt-8 p-4 bg-slate-900 border border-slate-800 rounded-2xl">
+                        <span className="text-3xl font-mono">{currentTime.toLocaleTimeString('pl-PL')}</span>
+                    </div>
+                </header>
+                {renderPriceTable("Bilard", cennik.filter(i => i.typ_zasobu_id === 1))}
+            </div>
             <h1 className="text-3xl font-bold text-white mb-6 text-center">Cennik usług</h1>
             <div className="overflow-x-auto rounded-lg shadow-lg border border-gray-700">
                 <table className="min-w-full bg-gray-800 text-white">
@@ -118,9 +133,11 @@ const Cennik = () => {
                     <p className="text-xl font-bold text-white">40 PLN (cały dzień)</p>
                 </div>
             </div>
-            {renderPriceTable("Bilard", cennik.filter(i => i.typ_zasobu_id === 1))}
-            {renderPriceTable("Dart", cennik.filter(i => i.typ_zasobu_id === 2))}
+
+            {/*{renderPriceTable("Bilard", cennik.filter(i => i.typ_zasobu_id === 1))}*/}
+            {/*{renderPriceTable("Dart", cennik.filter(i => i.typ_zasobu_id === 2))}*/}
         </div>
+
     );
 };
 
