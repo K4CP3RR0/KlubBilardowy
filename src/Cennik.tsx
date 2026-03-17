@@ -61,21 +61,38 @@ const Cennik = () => {
         };
     };
 
+    const checkIfActive = (item: CennikItem) => {
+        const currentDay = currentTime.getDay() === 0 ? 7 : currentTime.getDay();
+        const currentHour = currentTime.getHours();
+        if (item.dzien_tygodnia !== currentDay) return false;
+        const isEveningTariff = item.czas_od.startsWith("18");
+        if (currentDay === 7) return true;
+        return isEveningTariff ? currentHour >= 18 : currentHour < 18;
+    };
+
     const renderPriceTable = (title: string, items: CennikItem[]) => (
         <div className="mb-10 text-white">
-            <h2>{title}</h2>
+            <h2 className="text-xl font-bold mb-4">{title}</h2>
             <table>
-                {items.map((item) => {
-                    const { timeLabel, taryfa } = getRowData(item);
-                    return (
-                        <tr key={item.id}>
-                            <td>{dniTygodnia[item.dzien_tygodnia]}</td>
-                            <td>{timeLabel}</td>
-                            <td>{taryfa}</td>
-                            <td>{item.cena_za_godzine} PLN</td>
-                        </tr>
-                    );
-                })}
+                <tbody>
+                    {items.map((item) => {
+                        const { timeLabel, taryfa } = getRowData(item);
+                        const isSelected= checkIfActive(item);
+                        return (
+                            <tr key={item.id} className="border-b border-gray-700">
+                                <td className="px-6 py-4">{dniTygodnia[item.dzien_tygodnia]}</td>
+                                <td className={`px-6 py-4 flex items-center gap-2 ${isSelected ? 'bg-emerald-500/10 text-emerald-400' : ''}`}>
+                                    {timeLabel}
+                                    {isSelected && (
+                                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                                    )}
+                                </td>
+                                <td className="px-6 py-4">{taryfa}</td>
+                                <td className="px-6 py-4 font-bold">{item.cena_za_godzine} PLN</td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
             </table>
         </div>
     );
