@@ -84,12 +84,16 @@ const Cennik = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {items.map((item) => {
+                            {items.map((item, index) => {
                                 const { timeLabel, taryfa } = getRowData(item);
                                 const isSelected= checkIfActive(item);
+                                const isNewDay = index === 0 || items[index - 1].dzien_tygodnia !== item.dzien_tygodnia;
+
                                 return (
                                     <tr key={item.id} className={`border-b border-gray-700 ${isSelected ? 'bg-emerald-500/10 text-emerald-400' : ''}`}>
-                                        <td className="px-6 py-4 text-center">{dniTygodnia[item.dzien_tygodnia]}</td>
+                                        <td className="px-6 py-4 text-center">
+                                            {isNewDay ? dniTygodnia[item.dzien_tygodnia]:""}
+                                        </td>
                                         <td className={`px-6 py-4 flex items-center justify-center gap-2 `}>{timeLabel}</td>
                                         <td className="px-6 py-4 text-center">{taryfa}</td>
                                         <td className="px-6 py-4 font-bold text-center">
