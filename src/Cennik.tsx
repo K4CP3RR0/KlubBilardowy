@@ -73,27 +73,42 @@ const Cennik = () => {
     const renderPriceTable = (title: string, items: CennikItem[]) => (
         <div className="mb-10 text-white">
             <h2 className="text-xl font-bold mb-4">{title}</h2>
-            <table>
-                <tbody>
-                    {items.map((item) => {
-                        const { timeLabel, taryfa } = getRowData(item);
-                        const isSelected= checkIfActive(item);
-                        return (
-                            <tr key={item.id} className="border-b border-gray-700">
-                                <td className="px-6 py-4">{dniTygodnia[item.dzien_tygodnia]}</td>
-                                <td className={`px-6 py-4 flex items-center gap-2 ${isSelected ? 'bg-emerald-500/10 text-emerald-400' : ''}`}>
-                                    {timeLabel}
-                                    {isSelected && (
-                                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                                    )}
-                                </td>
-                                <td className="px-6 py-4">{taryfa}</td>
-                                <td className="px-6 py-4 font-bold">{item.cena_za_godzine} PLN</td>
+                <div className="bg-[#0a0f1a] border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
+                    <table className="w-full table-fixed border-collapse">
+                        <thead className="bg-[#05070a] border-b border-slate-800">
+                            <tr>
+                                <th className="w-[25%] px-6 py-5 text-[11px] font-bold text-slate-500 text-center uppercase">Dzień</th>
+                                <th className="w-[30%] px-6 py-5 text-[11px] font-bold text-slate-500 text-center uppercase">Przedział</th>
+                                <th className="w-[20%] px-6 py-5 text-[11px] font-bold text-slate-500 text-center uppercase">Status</th>
+                                <th className="w-[25%] px-6 py-5 text-[11px] font-bold text-white text-center uppercase">Cena / h</th>
                             </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                            {items.map((item) => {
+                                const { timeLabel, taryfa } = getRowData(item);
+                                const isSelected= checkIfActive(item);
+                                return (
+                                    <tr key={item.id} className={`border-b border-gray-700 ${isSelected ? 'bg-emerald-500/10 text-emerald-400' : ''}`}>
+                                        <td className="px-6 py-4 text-center">{dniTygodnia[item.dzien_tygodnia]}</td>
+                                        <td className={`px-6 py-4 flex items-center justify-center gap-2 `}>
+                                            {timeLabel}
+
+                                        </td>
+                                        <td className="px-6 py-4 text-center">{taryfa}</td>
+                                        <td className="px-6 py-4 font-bold text-center">
+                                            <div className="flex items-center justify-center gap-2">
+                                                <span>{item.cena_za_godzine} PLN</span>
+                                                {isSelected && (
+                                                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                                                )}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
         </div>
     );
 
