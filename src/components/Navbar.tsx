@@ -39,7 +39,7 @@ const Navbar = () => {
     }, []);
 
     return (
-        <nav className="bg-[#03346E] p-2 m-2 rounded-lg text-white">
+        <nav className="bg-[#03346E] p-2 m-2 rounded-lg text-white w-auto">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
 
 
@@ -120,7 +120,6 @@ const Navbar = () => {
                 </div>
             </div>
         </nav>
-
     );
 };
 
