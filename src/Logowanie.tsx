@@ -37,7 +37,7 @@ function Logowanie() {
     };
 
     return (
-        <div className="grid grid-cols-3 min-w-3xl">
+        <div className="grid grid-cols-3 ">
         <form onSubmit={handleLogin} className="rounded-lg p-10 m-2 content-center col-span3 col-start-2 bg-[#03346E]">
             <div className="mt-6 m-2">
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
