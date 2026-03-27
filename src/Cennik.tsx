@@ -1,6 +1,7 @@
 import {useTitle} from "./hooks/useTitle.tsx";
 import  supabase  from './utils/supabase';
 import {useEffect, useState} from "react";
+import Footer from "./components/Footer.tsx";
 
 interface CennikItem {
     id: number;
@@ -73,14 +74,14 @@ const Cennik = () => {
     const renderPriceTable = (title: string, items: CennikItem[]) => (
         <div className="mb-10 text-white">
             <h2 className="text-xl font-bold mb-4">{title}</h2>
-                <div className="bg-[#0a0f1a] border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
+                <div className="bg-[#1A1A1B] border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
                     <table className="w-full table-fixed border-collapse">
                         <thead className="bg-[#05070a] border-b border-slate-800">
                             <tr>
-                                <th className="w-[25%] px-6 py-5 text-[11px] font-bold text-slate-500 text-center uppercase">Dzień</th>
-                                <th className="w-[30%] px-6 py-5 text-[11px] font-bold text-slate-500 text-center uppercase">Przedział</th>
-                                <th className="w-[20%] px-6 py-5 text-[11px] font-bold text-slate-500 text-center uppercase">Status</th>
-                                <th className="w-[25%] px-6 py-5 text-[11px] font-bold text-white text-center uppercase">Cena / h</th>
+                                <th className="w-[25%] px-6 py-5 text-[11px] font-bold text-[#a9a9a9] text-center uppercase">Dzień</th>
+                                <th className="w-[30%] px-6 py-5 text-[11px] font-bold text-[#a9a9a9] text-center uppercase">Przedział</th>
+                                <th className="w-[20%] px-6 py-5 text-[11px] font-bold text-[#a9a9a9] text-center uppercase">Status</th>
+                                <th className="w-[25%] px-6 py-5 text-[11px] font-bold text-[#f5f5dc] text-center uppercase">Cena / h</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -114,24 +115,28 @@ const Cennik = () => {
     );
 
     return (
+        <div>
         <div className="container mx-auto px-4 py-8">
             {renderPriceTable("Bilard", cennik.filter(i => i.typ_zasobu_id === 1))}
             {renderPriceTable("Dart", cennik.filter(i => i.typ_zasobu_id === 2))}
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-gray-800 p-4 rounded-lg border-l-4 border-blue-500">
+                <div className="bg-[#1A1A1B] p-4 rounded-lg border-l-4 border-[#00e5ff]">
                     <p className="text-sm text-gray-400">Dni powszednie</p>
                     <p className="text-xl font-bold text-white">30 - 35 PLN</p>
                 </div>
-                <div className="bg-gray-800 p-4 rounded-lg border-l-4 border-blue-500">
+                <div className="bg-[#1A1A1B] p-4 rounded-lg border-l-4 border-[#00e5ff]">
                     <p className="text-sm text-gray-400">Weekend</p>
                     <p className="text-xl font-bold text-white">40 - 45 PLN</p>
                 </div>
-                <div className="bg-gray-800 p-4 rounded-lg border-l-4 border-blue-500">
+                <div className="bg-[#1A1A1B] p-4 rounded-lg border-l-4 border-[#00e5ff]">
                     <p className="text-sm text-gray-400">Niedziela</p>
                     <p className="text-xl font-bold text-white">40 PLN (cały dzień)</p>
                 </div>
             </div>
+
         </div>
+    <Footer/>
+    </div>
     );
 };
 

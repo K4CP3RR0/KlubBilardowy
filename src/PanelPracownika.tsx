@@ -1,5 +1,6 @@
 import {useTitle} from "./hooks/useTitle.tsx";
 import TableCard from "./components/TableCard.tsx";
+import Footer from "./components/Footer.tsx";
 //import { useState } from 'react';
 //import  supabase  from './utils/supabase';
 function PanelPracownika() {
@@ -7,7 +8,7 @@ function PanelPracownika() {
 
     useTitle("Panel Pracownika");
     return (
-
+        <div>
         <div className="p-6 min-h-screen">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <TableCard id="1" image="/pool-table.svg" type="Table" status="Dostępny" />
@@ -29,7 +30,10 @@ function PanelPracownika() {
                 <TableCard id="11" image="/dart.png" type="Dart" status="Dostępny" />
                 <TableCard id="12" image="/dart.png" type="Dart" status="Dostępny" />
             </div>
+
         </div>
+    <Footer/>
+    </div>
 
     )
 }

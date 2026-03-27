@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import  supabase  from './utils/supabase';
 import {useTitle} from "./hooks/useTitle.tsx";
+import Footer from "./components/Footer.tsx";
 
 function Rejestracja() {
     useTitle("Rejestracja");
@@ -36,7 +37,8 @@ function Rejestracja() {
     };
 
     return (
-        <form onSubmit={handleSignUp} className="rounded-lg p-10 m-2 content-center bg-[#03346E]">
+        <div>
+        <form onSubmit={handleSignUp} className="rounded-lg p-10 m-2 content-center w-3/4 bg-[#1a1a1b] shadow-md shadow-black">
             <div className="mt-6 m-2">
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Imię</label>
                 <div className="mt-1">
@@ -78,10 +80,11 @@ function Rejestracja() {
                 </div>
             </div>
             <div className="mt-6 text-center p-2">
-                <button className="rounded-md bg-[#FF6500] px-5 m-2 py-2.5 text-sm leading-5 font-semibold text-white hover:bg-[#FF7700]">Zarejestruj się</button>
+                <button className="rounded-md bg-[#0056b3] px-5 m-2 py-2.5 text-sm leading-5 font-semibold text-white hover:bg-[#0056f6]">Zarejestruj się</button>
             </div>
         </form>
-
+        <Footer/>
+        </div>
     );
 }
 

@@ -39,14 +39,14 @@ const Navbar = () => {
     }, []);
 
     return (
-        <nav className="bg-[#03346E] p-2 m-2 rounded-lg text-white w-auto">
+        <nav className="bg-[#1A1A1B] p-2 m-2 rounded-lg text-[#F5F5DC] w-auto drop-shadow-2xl ">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
 
 
                 <div className="md:hidden flex items-center">
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="text-white hover:text-gray-300 focus:outline-none"
+                        className="hover:text-gray-300 focus:outline-none"
                     >
                         <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             {isOpen ? (
@@ -66,29 +66,29 @@ const Navbar = () => {
                 <div className="hidden md:flex space-x-4 items-center">
                     <div className="flex items-center justify-center space-x-3 py-2">
                         <img src="/favicon.svg" alt="8bila" className="h-8 w-8 object-contain"/>
-                        <a href="/" className="text-white font-bold text-lg hover:text-gray-300 transition-colors">Klub bilardowy</a>
+                        <a href="/" className="text-[#f5f5dc] font-bold text-lg hover:text-gray-300 transition-colors">Klub bilardowy</a>
                     </div>
                     <a href="/cennik" className="font-bold rounded-lg px-3 py-2 hover:bg-gray-100 hover:text-gray-900 transition">Cennik</a>
                     <a href="/rezerwacje" className="font-bold rounded-lg px-3 py-2 hover:bg-gray-100 hover:text-gray-900 transition">Rezerwacje</a>
                     <a href="/kontakt" className="font-bold rounded-lg px-3 py-2 hover:bg-gray-100 hover:text-gray-900 transition">Kontakt</a>
 
                     {userRole === 1 && (
-                        <a href="/panel-pracownika" className="font-bold rounded-lg px-3 py-2 text-red-400 hover:bg-gray-100 hover:text-gray-900">Panel pracownika</a>
+                        <a href="/panel-pracownika" className="font-bold rounded-lg px-3 py-2 text-[#a9a9a9] hover:bg-gray-100 hover:text-gray-900">Panel pracownika</a>
                     )}
                     {userRole === 2 && (
-                        <a href="/panel-uzytkownika" className="font-bold rounded-lg px-3 py-2 text-red-400 hover:bg-gray-100 hover:text-gray-900">Panel użytkownika</a>
+                        <a href="/panel-uzytkownika" className="font-bold rounded-lg px-3 py-2 text-[#a9a9a9] hover:bg-gray-100 hover:text-gray-900">Panel użytkownika</a>
                     )}
                 </div>
 
 
                 <div className="hidden md:flex items-center">
                     {userName ? (
-                        <div className="flex items-center bg-gray-100 text-gray-900 font-bold rounded-lg px-3 py-2 space-x-2">
-                            <span>Zalogowano jako: <strong className="text-blue-900">{userName}</strong></span>
+                        <div className="flex items-center bg-[#0056f6] text-[#f5f5dc] font-bold rounded-lg px-3 py-2 space-x-2">
+                            <span>Zalogowano jako: <strong className="text-[#f5f5dc]">{userName}</strong></span>
                             <Logout />
                         </div>
                     ) : (
-                        <a href="/logowanie" className="font-bold rounded-lg px-3 py-2 text-blue-600 bg-white hover:bg-gray-200">
+                        <a href="/logowanie" className="font-bold rounded-lg px-3 py-2 bg-[#0056b3] text-[#f5f5dc] hover:bg-blue-900">
                             Logowanie
                         </a>
                     )}
@@ -96,18 +96,18 @@ const Navbar = () => {
             </div>
 
 
-            <div className={`${isOpen ? 'block' : 'hidden'} md:hidden mt-2 pb-4 border-t border-blue-800`}>
+            <div className={`${isOpen ? 'block' : 'hidden'} md:hidden mt-2 pb-4 border-t border-white`}>
                 <div className="flex flex-col space-y-2 pt-4">
-                    <a href="/cennik" className="px-3 py-2 rounded-md hover:bg-blue-700">Cennik</a>
-                    <a href="/rezerwacje" className="px-3 py-2 rounded-md hover:bg-blue-700">Rezerwacje</a>
-                    <a href="/kontakt" className="px-3 py-2 rounded-md hover:bg-blue-700">Kontakt</a>
+                    <a href="/cennik" className="px-3 py-2 rounded-md hover:bg-[#0056b3]">Cennik</a>
+                    <a href="/rezerwacje" className="px-3 py-2 rounded-md hover:bg-[#0056b3]">Rezerwacje</a>
+                    <a href="/kontakt" className="px-3 py-2 rounded-md hover:bg-[#0056b3]">Kontakt</a>
                     {userRole === 1 && (
-                        <a href="/panel-pracownika" className="font-bold rounded-md px-3 py-2 text-red-400 hover:bg-blue-700 hover:text-gray-100">Panel pracownika</a>
+                        <a href="/panel-pracownika" className="font-bold rounded-md px-3 py-2 text-[#a9a9a9] hover:bg-[#0056b3] hover:text-white">Panel pracownika</a>
                     )}
                     {userRole === 2 && (
-                        <a href="/panel-uzytkownika" className="font-bold rounded-md px-3 py-2 text-red-400 hover:bg-blue-700 hover:text-gray-100">Panel użytkownika</a>
+                        <a href="/panel-uzytkownika" className="font-bold rounded-md px-3 py-2 text-[#a9a9a9] hover:bg-[#0056b3] hover:text-white">Panel użytkownika</a>
                     )}
-                    <hr className="border-blue-800" />
+                    <hr className="border-white" />
 
                     {userName ? (
                         <div className="px-3 py-2">
@@ -115,7 +115,7 @@ const Navbar = () => {
                             <Logout />
                         </div>
                     ) : (
-                        <a href="/logowanie" className="mx-3 px-3 py-2 bg-white text-blue-600 rounded-lg text-center font-bold">Logowanie</a>
+                        <a href="/logowanie" className="mx-3 px-3 py-2 bg-[#0056b3] text-[f5f5dc] rounded-lg text-center font-bold">Logowanie</a>
                     )}
                 </div>
             </div>

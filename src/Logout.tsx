@@ -7,7 +7,7 @@ const Logout= () => {
         if (!error) {navigate('/');}
     }
     return (
-        <button className="font-bold rounded-lg px-3 ml-2 py-2 text-white bg-black hover:bg-black hover:text-blue-600" onClick={handleLogout}>Wyloguj się</button>
+        <button className="font-bold rounded-lg px-3 ml-2 py-2 bg-[#0056b3] text-[#f5f5dc] hover:bg-[#0056b3] hover:text-gray-300" onClick={handleLogout}>Wyloguj się</button>
     );
 }
 export default Logout;

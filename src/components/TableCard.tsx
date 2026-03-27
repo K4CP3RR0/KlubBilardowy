@@ -3,7 +3,7 @@ import Popover from "./Popover.tsx";
 // @ts-expect-error
 const TableCard = ({ id, type, status, image }) => (
 
-  <div className="bg-[#750E21] border-2 border-green-500 rounded-xl overflow-hidden cursor-pointer hover:scale-95 transition-transform w-full shadow-lg">
+  <div className="bg-[#1a1a1b] border-2 border-green-500 rounded-xl overflow-hidden cursor-pointer hover:scale-95 transition-transform w-full shadow-lg">
       <button popoverTarget={id} popoverTargetAction="show" className="w-full text-left outline-none">
     <img src={image} alt={type} className="h-40 w-50% object-cover" />
     <div className="p-4">
