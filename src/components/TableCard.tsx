@@ -8,7 +8,7 @@ const TableCard = ({ id, type, status, image }) => (
     <img src={image} alt={type} className="h-40 w-50% object-cover" />
     <div className="p-4">
       <div className="flex justify-between items-center mb-2">
-        <h3 className="text-white font-bold">{type} {id}</h3>
+        <h3 className="text-white font-bold">{type}</h3>
         <span className="px-2 py-1 bg-green-900 text-green-400 text-xs rounded-full">{status}</span>
       </div>
        <p className="text-white font-bold">Kliknij aby sprawdzić rezerwacje</p>

@@ -39,7 +39,7 @@ const Navbar = () => {
     }, []);
 
     return (
-        <nav className="bg-[#1A1A1B] p-2 m-2 rounded-lg text-[#F5F5DC] w-auto drop-shadow-2xl ">
+        <nav className="bg-[#1A1A1B] p-2 m-2 rounded-lg text-[#F5F5DC] w-auto drop-shadow-2xl">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
 
 
