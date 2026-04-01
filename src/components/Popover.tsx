@@ -28,6 +28,7 @@ na jutro/srode:
 
 */}
 function Popover({ id, type, status }: { id: number; type: string; status: string }) {
+
     const [rezerwacje, setRezerwacje] = useState<Rezerwacje[]>([]);
     const [loading, setLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
@@ -95,16 +96,24 @@ function Popover({ id, type, status }: { id: number; type: string; status: strin
         */}
 
         setFormError(null);
+        const nameRegex = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+$/;
+        const phoneRegex = /^[0-9+ ]{9,15}$/;
         const now = new Date();
         const start = new Date(timeFrom);
         const end = new Date(timeTo);
-        const nameRegex = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+$/;
+
+        if (!nameRegex.test(name)) return setFormError("Imię i nazwisko nie może zawierać cyfr ani znaków specjalnych.");
+
+        if (phone && !phoneRegex.test(phone)) {
+            return alert("Błędny format, podaj same cyfry (np. 123456789).");
+        }
+
         if (!timeFrom || !timeTo) return setFormError("Wybierz pełny zakres czasu.");
         if (start < now) return setFormError("Nie można rezerwować stolika w przeszłości.");
         if (end <= start) return setFormError("Godzina zakończenia musi być późniejsza niż rozpoczęcia.");
         if (!isGuest && !selectedUserId) return setFormError("Musisz wybrać użytkownika z listy.");
         if (name.length < 3) return setFormError("Imię i nazwisko jest za krótkie.");
-        if (!nameRegex.test(name)) return setFormError("Imię i nazwisko nie może zawierać cyfr ani znaków specjalnych.");
+
         if (!timeFrom || !timeTo) return alert("Wybierz czas rezerwacji");
         setIsSaving(true);
 
