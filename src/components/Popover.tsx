@@ -40,6 +40,8 @@ function Popover({ id, type, status }: { id: number; type: string; status: strin
     const [timeFrom, setTimeFrom] = useState("");
     const [timeTo, setTimeTo] = useState("");
 
+    const [formError, setFormError] = useState<string | null>(null);
+
     const fetchRezerwacje = async () => {
         setLoading(true);
         const { data, error } = await supabase
@@ -91,8 +93,21 @@ function Popover({ id, type, status }: { id: number; type: string; status: strin
             2. laczenie z zasobem w zasoby_rezerwacje
             3. zmiana status stolu [potwierdzona/zajety]
         */}
+
+        setFormError(null);
+        const now = new Date();
+        const start = new Date(timeFrom);
+        const end = new Date(timeTo);
+        const nameRegex = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+$/;
+        if (!timeFrom || !timeTo) return setFormError("Wybierz pełny zakres czasu.");
+        if (start < now) return setFormError("Nie można rezerwować stolika w przeszłości.");
+        if (end <= start) return setFormError("Godzina zakończenia musi być późniejsza niż rozpoczęcia.");
+        if (!isGuest && !selectedUserId) return setFormError("Musisz wybrać użytkownika z listy.");
+        if (name.length < 3) return setFormError("Imię i nazwisko jest za krótkie.");
+        if (!nameRegex.test(name)) return setFormError("Imię i nazwisko nie może zawierać cyfr ani znaków specjalnych.");
         if (!timeFrom || !timeTo) return alert("Wybierz czas rezerwacji");
         setIsSaving(true);
+
         const { data: { session } } = await supabase.auth.getSession();
         if (!session) {
             setIsSaving(false);
@@ -183,7 +198,11 @@ function Popover({ id, type, status }: { id: number; type: string; status: strin
                             <input type="datetime-local" className="bg-white/10 p-2 rounded-lg text-white text-xs border border-white/5" onChange={e => setTimeTo(e.target.value)} />
                         </div>
                     </div>
-
+                    {formError && (
+                        <div className="bg-red-500/20 border border-red-500 text-red-200 text-[10px] p-2 rounded-lg font-bold text-center animate-pulse">
+                            Błąd: {formError}
+                        </div>
+                    )}
                     <button
                         onClick={handleSave}
                         disabled={isSaving}
