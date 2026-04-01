@@ -105,7 +105,7 @@ function Popover({ id, type, status }: { id: number; type: string; status: strin
         if (!nameRegex.test(name)) return setFormError("Imię i nazwisko nie może zawierać cyfr ani znaków specjalnych.");
 
         if (phone && !phoneRegex.test(phone)) {
-            return alert("Błędny format, podaj same cyfry (np. 123456789).");
+            return setFormError("Błędny format, podaj same cyfry (np. 123456789).");
         }
 
         if (!timeFrom || !timeTo) return setFormError("Wybierz pełny zakres czasu.");
