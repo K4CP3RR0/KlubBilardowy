@@ -72,16 +72,16 @@ const Cennik = () => {
     };
 
     const renderPriceTable = (title: string, items: CennikItem[]) => (
-        <div className="mb-10 text-white">
-            <h2 className="text-xl font-bold mb-4">{title}</h2>
+        <div className="mb-10 text-[#f5f5dc]">
+            <h2 className="text-xl montserrat-extrabold mb-4">{title}</h2>
                 <div className="bg-[#1A1A1B] border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
                     <table className="w-full table-fixed border-collapse">
                         <thead className="bg-[#05070a] border-b border-slate-800">
                             <tr>
-                                <th className="w-[25%] px-6 py-5 text-[11px] font-bold text-[#a9a9a9] text-center uppercase">Dzień</th>
-                                <th className="w-[30%] px-6 py-5 text-[11px] font-bold text-[#a9a9a9] text-center uppercase">Przedział</th>
-                                <th className="w-[20%] px-6 py-5 text-[11px] font-bold text-[#a9a9a9] text-center uppercase">Status</th>
-                                <th className="w-[25%] px-6 py-5 text-[11px] font-bold text-[#f5f5dc] text-center uppercase">Cena / h</th>
+                                <th className="w-[25%] px-6 py-5 text-[11px] montserrat-extrabold text-[#f5f5dc] text-center uppercase">Dzień</th>
+                                <th className="w-[30%] px-6 py-5 text-[11px] montserrat-extrabold text-[#f5f5dc] text-center uppercase">Przedział</th>
+                                <th className="w-[20%] px-6 py-5 text-[11px] montserrat-extrabold text-[#f5f5dc] text-center uppercase">Status</th>
+                                <th className="w-[25%] px-6 py-5 text-[11px] montserrat-extrabold text-[#f5f5dc] text-center uppercase">Cena / h</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -91,13 +91,13 @@ const Cennik = () => {
                                 const isNewDay = index === 0 || items[index - 1].dzien_tygodnia !== item.dzien_tygodnia;
 
                                 return (
-                                    <tr key={item.id} className={`border-b border-gray-700 ${isSelected ? 'bg-emerald-500/10 text-emerald-400' : ''}`}>
-                                        <td className="px-6 py-4 text-center">
+                                    <tr key={item.id} className={`border-b border-gray-700 montserrat-light ${isSelected ? 'bg-emerald-500/10 text-emerald-400' : ''}`}>
+                                        <td className="px-4 py-4 text-center">
                                             {isNewDay ? dniTygodnia[item.dzien_tygodnia]:""}
                                         </td>
-                                        <td className={`px-6 py-4 flex items-center justify-center gap-2 `}>{timeLabel}</td>
-                                        <td className="px-6 py-4 text-center">{taryfa}</td>
-                                        <td className="px-6 py-4 font-bold text-center">
+                                        <td className={`px-4 py-4 flex items-center justify-center gap-2 `}>{timeLabel}</td>
+                                        <td className="px-4 py-4 text-center">{taryfa}</td>
+                                        <td className="px-4 py-4 montserrat-extrabold text-center">
                                             <div className="flex items-center justify-center gap-2">
                                                 {item.cena_za_godzine} PLN
                                                 {isSelected && (
@@ -122,15 +122,15 @@ const Cennik = () => {
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-[#1A1A1B] p-4 rounded-lg border-l-4 border-[#00e5ff]">
                     <p className="text-sm text-gray-400">Dni powszednie</p>
-                    <p className="text-xl font-bold text-white">30 - 35 PLN</p>
+                    <p className="text-xl montserrat-extrabold text-[#f5f5dc]">30 - 35 PLN</p>
                 </div>
                 <div className="bg-[#1A1A1B] p-4 rounded-lg border-l-4 border-[#00e5ff]">
                     <p className="text-sm text-gray-400">Weekend</p>
-                    <p className="text-xl font-bold text-white">40 - 45 PLN</p>
+                    <p className="text-xl montserrat-extrabold text-[#f5f5dc]">40 - 45 PLN</p>
                 </div>
                 <div className="bg-[#1A1A1B] p-4 rounded-lg border-l-4 border-[#00e5ff]">
                     <p className="text-sm text-gray-400">Niedziela</p>
-                    <p className="text-xl font-bold text-white">40 PLN (cały dzień)</p>
+                    <p className="text-xl montserrat-extrabold text-[#f5f5dc]">40 PLN (cały dzień)</p>
                 </div>
             </div>
 

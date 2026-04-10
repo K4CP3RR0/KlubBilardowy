@@ -38,9 +38,10 @@ function Rejestracja() {
 
     return (
         <div>
-        <form onSubmit={handleSignUp} className="rounded-lg p-10 m-2 content-center w-3/4 bg-[#1a1a1b] shadow-md shadow-black">
+        <div className="md:grid md:grid-cols-3">
+        <form onSubmit={handleSignUp} className="md:col-span-2 md:col-start-2 rounded-lg p-10 m-2 content-center md:w-1/2 montserrat-light bg-[#1a1a1b] shadow-md shadow-black">
             <div className="mt-6 m-2">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Imię</label>
+                <label className="block text-sm font-medium  text-gray-700 dark:text-gray-300">Imię</label>
                 <div className="mt-1">
                     <input id="imie" onChange={e => setFormData({...formData, imie: e.target.value})} required
                            className="block w-full rounded-md border border-gray-300 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-sky-500 focus:outline focus:outline-sky-500 disabled:shadow-none sm:text-sm disabled:border-gray-700 disabled:bg-gray-800/20"
@@ -80,10 +81,12 @@ function Rejestracja() {
                 </div>
             </div>
             <div className="mt-6 text-center p-2">
-                <button className="rounded-md bg-[#0056b3] px-5 m-2 py-2.5 text-sm leading-5 font-semibold text-white hover:bg-[#0056f6]">Zarejestruj się</button>
+                <button className="rounded-md bg-[#0056b3] px-5 m-2 py-2.5 leading-5  text-white text-sm hover:bg-[#0056f6]">Zarejestruj się</button>
             </div>
         </form>
-        <Footer/>
+
+        </div>
+    <Footer/>
         </div>
     );
 }
