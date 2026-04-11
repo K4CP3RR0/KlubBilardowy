@@ -75,7 +75,7 @@ const Cennik = () => {
         <div className="mb-10 text-[#f5f5dc]">
             <h2 className="text-xl montserrat-extrabold mb-4">{title}</h2>
                 <div className="bg-[#1A1A1B] border border-slate-800 rounded-xl overflow-hidden overflow-x-auto shadow-2xl">
-                    <table className="min-w-1/2 w-full table-fixed border-collapse">
+                    <table className="min-w-1/2 w-full table-auto md:table-fixed border-collapse">
                         <thead className="bg-[#05070a] border-b border-slate-800">
                             <tr>
                                 <th className="w-[25%] px-6 py-5 text-[11px] montserrat-extrabold text-[#f5f5dc] text-center uppercase">Dzień</th>
