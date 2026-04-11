@@ -92,12 +92,12 @@ const Cennik = () => {
 
                                 return (
                                     <tr key={item.id} className={`border-b border-gray-700 montserrat-light ${isSelected ? 'bg-emerald-500/10 text-emerald-400' : ''}`}>
-                                        <td className="px-2 md:px-6 py-4 text-center">
+                                        <td className="px-6 py-4 text-center">
                                             {isNewDay ? dniTygodnia[item.dzien_tygodnia]:""}
                                         </td>
-                                        <td className={`px-2 md:px-6 py-4 flex items-center justify-center gap-2 `}>{timeLabel}</td>
-                                        <td className="px-2 md:px-6 py-4 text-center">{taryfa}</td>
-                                        <td className="px-2 md:px-6 py-4 montserrat-extrabold text-center">
+                                        <td className={`px-6 py-4 flex items-center justify-center gap-2 `}>{timeLabel}</td>
+                                        <td className="px-6 py-4 text-center">{taryfa}</td>
+                                        <td className="px-6 py-4 montserrat-extrabold text-center">
                                             <div className="flex items-center justify-center gap-2">
                                                 {item.cena_za_godzine} PLN
                                                 {isSelected && (
