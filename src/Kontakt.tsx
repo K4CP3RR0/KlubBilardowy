@@ -7,7 +7,7 @@ function Kontakt() {
     return (
         <div>
             <div className="grid grid-cols-1 md:grid-cols-3 mt-5 mb-5">
-                <div className="ml-10 mr-10 p-5 rounded-lg bg-[#1a1a1b] text-white font-bold  drop-shadow-2xl ">
+                <div className="ml-10 mr-10 p-5 rounded-lg bg-[#1a1a1b] text-white montserrat-extrabold  drop-shadow-2xl ">
                     <h1 className="text-2xl">Klub bilardowy</h1>
                     <p className="mt-5 text-xl">Bydgoszcz, ul. Warszawska 25</p>
                     <p className="mt-5 text-xl">bilard@bydgoszcz.pl</p>
