@@ -1,6 +1,8 @@
 import {useTitle} from "./hooks/useTitle.tsx";
 import Footer from "./components/Footer.tsx";
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import Map from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -30,7 +32,7 @@ function Kontakt() {
                             latitude: 53.1348037,
                             zoom: 17
                         }}
-                        style={{ width: '100%', height: '300px' }}
+                        style={{width: '100%',height: '100%'}}
                         mapStyle="mapbox://styles/mapbox/streets-v12"
                     />
                 </div>
