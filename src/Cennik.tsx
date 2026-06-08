@@ -49,7 +49,11 @@ const Cennik = () => {
     },[]);
 
     if (loading) {
-        return <div className="text-center text-white mt-10">Ładowanie cennika</div>
+        return <div className="bg-slate-50 min-h-screen flex flex-col items-center justify-center">
+            <div className="text-slate-600 font-bold text-lg animate-pulse">
+                Ładowanie cennika...
+            </div>
+        </div>
     }
 
     const getRowData = (item: CennikItem) => {
@@ -72,71 +76,89 @@ const Cennik = () => {
     };
 
     const renderPriceTable = (title: string, items: CennikItem[]) => (
-        <div className="mb-10 text-[#f5f5dc]">
+        <div className="mb-10 text-slate-900">
             <h2 className="text-xl montserrat-extrabold mb-4">{title}</h2>
-                <div className="bg-[#1A1A1B] border border-slate-800 rounded-xl overflow-hidden overflow-x-auto shadow-2xl">
-                    <table className="min-w-1/2 w-full table-auto md:table-fixed border-collapse">
-                        <thead className="bg-[#05070a] border-b border-slate-800">
-                            <tr>
-                                <th className="w-[25%] px-6 py-5 text-[11px] montserrat-extrabold text-[#f5f5dc] text-center uppercase">Dzień</th>
-                                <th className="w-[30%] px-6 py-5 text-[11px] montserrat-extrabold text-[#f5f5dc] text-center uppercase">Przedział</th>
-                                <th className="w-[20%] px-6 py-5 text-[11px] montserrat-extrabold text-[#f5f5dc] text-center uppercase">Status</th>
-                                <th className="w-[25%] px-6 py-5 text-[11px] montserrat-extrabold text-[#f5f5dc] text-center uppercase">Cena / h</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {items.map((item, index) => {
-                                const { timeLabel, taryfa } = getRowData(item);
-                                const isSelected= checkIfActive(item);
-                                const isNewDay = index === 0 || items[index - 1].dzien_tygodnia !== item.dzien_tygodnia;
+            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden overflow-x-auto shadow-sm">
+                <table className="min-w-1/2 w-full table-auto md:table-fixed border-collapse">
+                    <thead className="bg-slate-50 border-b border-slate-200">
+                    <tr>
+                        <th className="w-[25%] px-6 py-5 text-[11px] montserrat-extrabold text-slate-500 text-center uppercase">Dzień</th>
+                        <th className="w-[30%] px-6 py-5 text-[11px] montserrat-extrabold text-slate-500 text-center uppercase">Przedział</th>
+                        <th className="w-[20%] px-6 py-5 text-[11px] montserrat-extrabold text-slate-500 text-center uppercase">Status</th>
+                        <th className="w-[25%] px-6 py-5 text-[11px] montserrat-extrabold text-slate-500 text-center uppercase">Cena / h</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {items.map((item, index) => {
+                        const { timeLabel, taryfa } = getRowData(item);
+                        const isSelected = checkIfActive(item);
+                        const isNewDay = index === 0 || items[index - 1].dzien_tygodnia !== item.dzien_tygodnia;
 
-                                return (
-                                    <tr key={item.id} className={`border-b border-gray-700 montserrat-light ${isSelected ? 'bg-emerald-500/10 text-emerald-400' : ''}`}>
-                                        <td className="px-6 py-4 text-center">
-                                            {isNewDay ? dniTygodnia[item.dzien_tygodnia]:""}
-                                        </td>
-                                        <td className={`px-6 py-4 flex items-center justify-center gap-2 `}>{timeLabel}</td>
-                                        <td className="px-6 py-4 text-center">{taryfa}</td>
-                                        <td className="px-6 py-4 montserrat-extrabold text-center">
-                                            <div className="flex items-center justify-center gap-2">
-                                                {item.cena_za_godzine} PLN
-                                                {isSelected && (
-                                                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                                                )}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
-                </div>
+                        // Co drugi wiersz (taryfa wieczorna) dostaje mocniejszą linię oddzielającą dni tygodnia
+                        const czyKoniecDnia = index % 2 === 1;
+
+                        return (
+                            <tr
+                                key={item.id}
+                                className={`text-slate-700 hover:bg-slate-50/50 transition montserrat-light 
+                                            ${czyKoniecDnia ? 'border-b-2 border-slate-200' : 'border-b border-slate-100'} 
+                                            ${isSelected ? 'bg-emerald-500/20 text-emerald-800 font-semibold' : ''}`}
+                            >
+                                <td className="px-6 py-4 text-center font-medium text-slate-900">
+                                    {isNewDay ? dniTygodnia[item.dzien_tygodnia] : ""}
+                                </td>
+                                <td className="px-6 py-4 flex items-center justify-center gap-2">{timeLabel}</td>
+                                <td className="px-6 py-4 text-center">{taryfa}</td>
+                                <td className="px-6 py-4 montserrat-extrabold text-center">
+                                    <div className="flex items-center justify-center gap-2">
+                                        {item.cena_za_godzine} PLN
+                                        {isSelected && (
+                                            <span className="h-2 w-2 rounded-full bg-emerald-600 animate-pulse" />
+                                        )}
+                                    </div>
+                                </td>
+                            </tr>
+                        );
+                    })}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 
     return (
-        <div>
-        <div className="container mx-auto px-4 py-8">
-            {renderPriceTable("Bilard", cennik.filter(i => i.typ_zasobu_id === 1))}
-            {renderPriceTable("Dart", cennik.filter(i => i.typ_zasobu_id === 2))}
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-[#1A1A1B] p-4 rounded-lg border-l-4 border-[#00e5ff]">
-                    <p className="text-sm text-gray-400">Dni powszednie</p>
-                    <p className="text-xl montserrat-extrabold text-[#f5f5dc]">30 - 35 PLN</p>
+        <div className="bg-slate-50 min-h-screen flex flex-col">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
+                <div className="mb-8 border-b border-slate-200 pb-5">
+                <span className="text-blue-600 font-extrabold text-xs uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                    Cennik usług klubu
+                </span>
+                    <h1 className="text-4xl font-black text-slate-900 mt-3">Przejrzyste Taryfy</h1>
+                    <p className="text-slate-500 text-sm mt-1.5">
+                        Aktualne stawki godzinowe za wynajem stołów bilardowych oraz stanowisk dart.
+                    </p>
                 </div>
-                <div className="bg-[#1A1A1B] p-4 rounded-lg border-l-4 border-[#00e5ff]">
-                    <p className="text-sm text-gray-400">Weekend</p>
-                    <p className="text-xl montserrat-extrabold text-[#f5f5dc]">40 - 45 PLN</p>
-                </div>
-                <div className="bg-[#1A1A1B] p-4 rounded-lg border-l-4 border-[#00e5ff]">
-                    <p className="text-sm text-gray-400">Niedziela</p>
-                    <p className="text-xl montserrat-extrabold text-[#f5f5dc]">40 PLN (cały dzień)</p>
+
+                {renderPriceTable("Bilard", cennik.filter(i => i.typ_zasobu_id === 1))}
+                {renderPriceTable("Dart", cennik.filter(i => i.typ_zasobu_id === 2))}
+
+                <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="bg-white p-5 rounded-2xl border-l-4 border-blue-500 shadow-sm">
+                        <p className="text-xs text-slate-500 uppercase font-semibold">Dni powszednie</p>
+                        <p className="text-2xl font-black text-slate-900 mt-1">30 - 35 PLN</p>
+                    </div>
+                    <div className="bg-white p-5 rounded-2xl border-l-4 border-blue-500 shadow-sm">
+                        <p className="text-xs text-slate-500 uppercase font-semibold">Weekend</p>
+                        <p className="text-2xl font-black text-slate-900 mt-1">40 - 45 PLN</p>
+                    </div>
+                    <div className="bg-white p-5 rounded-2xl border-l-4 border-blue-500 shadow-sm">
+                        <p className="text-xs text-slate-500 uppercase font-semibold">Niedziela</p>
+                        <p className="text-2xl font-black text-slate-900 mt-1">40 PLN (cały dzień)</p>
+                    </div>
                 </div>
             </div>
-
+            <Footer />
         </div>
-    <Footer/>
-    </div>
     );
 };
 

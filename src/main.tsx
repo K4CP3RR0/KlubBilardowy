@@ -11,7 +11,7 @@ import PanelUzytkownika from "./PanelUzytkownika.tsx";
 import Rejestracja from "./Rejestracja.tsx";
 import ProtectedRoute from "./ProtectedRoute.tsx";
 import Navbar from "./components/Navbar.tsx";
-
+import Regulamin from "./Regulamin.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -26,6 +26,7 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/panel-pracownika" element={<ProtectedRoute requiredRole={1}><PanelPracownika/></ProtectedRoute>} />
               <Route path="/panel-uzytkownika" element={<ProtectedRoute requiredRole={2}><PanelUzytkownika/></ProtectedRoute>}/>
               <Route path="/rejestracja" element={<Rejestracja/>} />
+              <Route path="/regulamin" element={<Regulamin/>} />
           </Routes>
       </BrowserRouter>
   </StrictMode>,

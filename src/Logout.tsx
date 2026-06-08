@@ -6,8 +6,11 @@ const Logout= () => {
         const { error } = await supabase.auth.signOut()
         if (!error) {navigate('/');}
     }
+
     return (
-        <button className="montserrat-extrabold rounded-lg px-3 ml-2 py-2 bg-[#0056b3] md:bg-[#1a1a1d] text-[#f5f5dc] hover:bg-[#1a1a1f] hover:text-gray-300" onClick={handleLogout}>Wyloguj się</button>
+        <button className="font-bold rounded-xl px-4 py-2 text-sm text-rose-600 bg-rose-50 border-2 border-slate-200 hover:bg-rose-100 transition-colors duration-200" onClick={handleLogout}>
+            Wyloguj się
+        </button>
     );
 }
 export default Logout;

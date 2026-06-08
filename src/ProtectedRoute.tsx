@@ -53,7 +53,13 @@ const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
     }, []);
 
     if (loading) {
-        return <div className="text-white text-center mt-5">Weryfikacja uprawnień...</div>;
+        return (
+            <div className="bg-slate-50 min-h-screen flex flex-col items-center justify-center">
+                <div className="text-slate-600 font-bold text-lg animate-pulse">
+                    Uwierzytelnianie...
+                </div>
+            </div>
+        );
     }
 
     if (!isAuthenticated) {

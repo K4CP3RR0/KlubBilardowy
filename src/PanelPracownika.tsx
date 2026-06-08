@@ -40,8 +40,14 @@ function PanelPracownika() {
     },[]);
 
     return (
-        <div>
-            <div className="p-6 min-h-screen">
+        <div className="bg-slate-50 min-h-screen flex flex-col">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
+                <div className="mb-8 border-b border-slate-100 pb-5">
+                    <span className="text-blue-600 font-extrabold text-xs uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-100">Panel Pracownika</span>
+                    <h1 className="text-4xl font-black text-slate-900 mt-3">Panel Obsługi Klienta</h1>
+                    <p className="text-slate-500 text-sm mt-1.5">Zarządzaj rezerwacjami, sprawdzaj grafik i zmieniaj statusy stołów klubowych.</p>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {zasoby.map((zasob) => {
                         const typNazwa = zasob.nazwa;
@@ -58,6 +64,7 @@ function PanelPracownika() {
                         );
                     })}
                 </div>
+
                 {zasoby.length === 0 && (
                     <div className="text-center text-slate-500 mt-20">
                         Brak aktywnych zasobów w systemie.

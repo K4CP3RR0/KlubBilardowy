@@ -12,15 +12,23 @@ function Rejestracja() {
         nazwisko: '',
         telefon: ''
     });
+    const [phoneError, setPhoneError] = useState<string | null>(null);
 
     const handleSignUp = async (e: React.FormEvent) => {
         e.preventDefault();
+        const phoneRegex = /^(?:\+48)?\d{9}$/;
+        const cleanPhone = formData.telefon.replace(/\s+/g, '');
 
+        if (!phoneRegex.test(cleanPhone)) {
+            setPhoneError("Niepoprawny format. Wpisz 9 cyfr (np. 500600700)");
+            return;
+        }
+
+        setPhoneError(null);
         const { error } = await supabase.auth.signUp({
             email: formData.email,
             password: formData.password,
             options: {
-                // Te dane trafią do 'raw_user_meta_data' i zostaną przechwycone przez trigger SQL
                 data: {
                     imie: formData.imie,
                     nazwisko: formData.nazwisko,
@@ -37,56 +45,85 @@ function Rejestracja() {
     };
 
     return (
-        <div>
-        <div className="md:grid md:grid-cols-3">
-        <form onSubmit={handleSignUp} className="md:col-span-2 md:col-start-2 rounded-lg p-10 m-2 content-center md:w-1/2 montserrat-light bg-[#1a1a1b] shadow-md shadow-black">
-            <div className="mt-6 m-2">
-                <label className="block text-sm font-medium  text-gray-700 dark:text-gray-300">Imię</label>
-                <div className="mt-1">
-                    <input id="imie" onChange={e => setFormData({...formData, imie: e.target.value})} required
-                           className="block w-full rounded-md border border-gray-300 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-sky-500 focus:outline focus:outline-sky-500 disabled:shadow-none sm:text-sm disabled:border-gray-700 disabled:bg-gray-800/20"
-                           name="imie" placeholder="Imię"/>
-                </div>
-            </div>
-            <div className="mt-6 m-2">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Nazwisko</label>
-                <div className="mt-1">
-                    <input id="nazwisko" onChange={e => setFormData({...formData, nazwisko: e.target.value})} required
-                           className="block w-full rounded-md border border-gray-300 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-sky-500 focus:outline focus:outline-sky-500 disabled:shadow-none sm:text-sm disabled:border-gray-700 disabled:bg-gray-800/20"
-                           name="nazwisko" placeholder="Nazwisko"/>
-                </div>
-            </div>
-            <div className="mt-6 m-2">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Telefon</label>
-                <div className="mt-1">
-                    <input id="phone" onChange={e => setFormData({...formData, telefon: e.target.value})} required
-                           className="block w-full rounded-md border border-gray-300 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-sky-500 focus:outline focus:outline-sky-500 disabled:shadow-none sm:text-sm disabled:border-gray-700 disabled:bg-gray-800/20"
-                           name="phone" placeholder="Telefon"/>
-                </div>
-            </div>
-            <div className="mt-6 m-2">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
-                <div className="mt-1">
-                    <input id="email1" onChange={e => setFormData({...formData, email: e.target.value})} required placeholder="Email"
-                           className="block w-full rounded-md border border-gray-300 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-sky-500 focus:outline focus:outline-sky-500 disabled:shadow-none sm:text-sm disabled:border-gray-700 disabled:bg-gray-800/20"
-                           name="email"/>
-                </div>
-            </div>
-            <div className="mt-6 m-2">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Hasło</label>
-                <div className="mt-1">
-                    <input id="password" onChange={e => setFormData({...formData, password: e.target.value})} required placeholder="Hasło"
-                           className="block w-full rounded-md border border-gray-300 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-sky-500 focus:outline focus:outline-sky-500 disabled:shadow-none sm:text-sm disabled:border-gray-700 disabled:bg-gray-800/20"
-                           type="password" name="password"/>
-                </div>
-            </div>
-            <div className="mt-6 text-center p-2">
-                <button className="rounded-md bg-[#0056b3] px-5 m-2 py-2.5 leading-5  text-white text-sm hover:bg-[#0056f6]">Zarejestruj się</button>
-            </div>
-        </form>
+        <div className="bg-slate-50 min-h-screen flex flex-col justify-center">
+            <div className="max-w-md mx-auto w-full px-4 py-8 flex-grow">
+                <div className="bg-white border border-slate-150 rounded-3xl p-8 shadow-sm">
+                    <div className="text-center mb-6">
+                        <h2 className="text-3xl font-black text-slate-900">Załóż konto</h2>
+                    </div>
 
-        </div>
-    <Footer/>
+                    <form onSubmit={handleSignUp} className="space-y-4">
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-xs font-bold text-slate-600 uppercase tracking-wide">Imię</label>
+                                <input
+                                    id="imie"
+                                    onChange={e => setFormData({...formData, imie: e.target.value})}
+                                    required
+                                    className="block w-full mt-1.5 rounded-xl border border-slate-200 px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500/20 text-sm transition outline-none"
+                                    placeholder="Imię"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-bold text-slate-600 uppercase tracking-wide">Nazwisko</label>
+                                <input
+                                    id="nazwisko"
+                                    onChange={e => setFormData({...formData, nazwisko: e.target.value})}
+                                    required
+                                    className="block w-full mt-1.5 rounded-xl border border-slate-200 px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500/20 text-sm transition outline-none"
+                                    placeholder="Nazwisko"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label className="block text-xs font-bold text-slate-600 uppercase tracking-wide">Telefon</label>
+                            <input
+                                id="phone"
+                                onChange={e => {
+                                    setFormData({...formData, telefon: e.target.value});
+                                    if (phoneError) setPhoneError(null);
+                                }}
+                                required
+                                className={`block w-full mt-1.5 rounded-xl border px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:ring-2 text-sm transition outline-none ${
+                                    phoneError
+                                        ? 'border-rose-400 focus:ring-rose-500/10'
+                                        : 'border-slate-200 focus:ring-blue-500/20'
+                                }`}
+                                placeholder="Telefon"
+                            />
+                            {phoneError && (
+                                <p className="text-xs text-rose-600 font-medium mt-1.5 pl-1">{phoneError}</p>
+                            )}
+                        </div>
+                        <div>
+                            <label className="block text-xs font-bold text-slate-600 uppercase tracking-wide">Email</label>
+                            <input
+                                id="email1"
+                                onChange={e => setFormData({...formData, email: e.target.value})}
+                                required
+                                placeholder="Email"
+                                className="block w-full mt-1.5 rounded-xl border border-slate-200 px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500/20 text-sm transition outline-none"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-xs font-bold text-slate-600 uppercase tracking-wide">Hasło</label>
+                            <input
+                                id="password"
+                                onChange={e => setFormData({...formData, password: e.target.value})}
+                                required
+                                placeholder="Hasło"
+                                className="block w-full mt-1.5 rounded-xl border border-slate-200 px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500/20 text-sm transition outline-none"
+                                type="password"
+                                name="password"
+                            />
+                        </div>
+                        <button className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-sm transition">
+                            Zarejestruj się
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <Footer />
         </div>
     );
 }
